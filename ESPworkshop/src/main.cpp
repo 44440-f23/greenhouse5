@@ -18,7 +18,7 @@ StaticJsonDocument<200> doc;
 
 void setup() {
   Serial.begin(9600);
-  doc["greenhouse"] = 5;
+  doc["id"] = 5;
 
   // sensors is owned by temperature.h
   sensors.begin();
@@ -27,8 +27,8 @@ void setup() {
 }
 
 void loop() {    
-  doc["moisture"] = getMoisture();
-  doc["temperature"] = getTemp();
+  doc["soilM"] = getMoisture();
+  doc["temp"] = getTemp();
   doc["humidity"] = getHumidity();
   doc["light"] = getLight();
   serializeJsonPretty(doc, Serial);
