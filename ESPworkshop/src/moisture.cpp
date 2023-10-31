@@ -5,7 +5,7 @@ String getMoisture(){
     int intervals = (AIR_MOISTURE - SUBMERGED_MOISTURE)/3;
     int soilMoistureValue = 0;
 
-    soilMoistureValue = analogRead(A0);  //put Sensor insert into soil (Kevin: what does this mean?)
+    soilMoistureValue = analogRead(MOISTURE_PIN);  //put Sensor insert into soil (Kevin: what does this mean?)
 
     if(soilMoistureValue > SUBMERGED_MOISTURE && soilMoistureValue < (SUBMERGED_MOISTURE + intervals))
     {
