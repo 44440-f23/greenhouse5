@@ -1,6 +1,6 @@
 /*
-Device: DFROBOT SEN0546
-    CHT8305 Temperature & Humidity Sensor
+Device: DFROBOT SEN0546: CHT8305 Temperature & Humidity Sensor
+Wire requires Wire.begin() in main setup
 
 Note: Much of this code is taken from documentation from the dfrobot wiki
 https://wiki.dfrobot.com/SKU_SEN0546_I2C_Temperature_and_Humidity_Sensor_Stainless_Steel_Shell
