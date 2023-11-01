@@ -3,7 +3,7 @@
 OneWire ds(ONE_WIRE_BUS);
 DallasTemperature sensors(&ds);
 
-float getTemp(){
+float getSoilTemp(){
     sensors.requestTemperatures();
     return  sensors.getTempCByIndex(0);
 }
