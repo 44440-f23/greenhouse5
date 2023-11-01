@@ -1,8 +1,8 @@
 /*
 Device: DS18S20 Digital Temperature Sensor
 */
-#ifndef _TEMP
-#define _TEMP
+#ifndef _SOIL_TEMP
+#define _SOIL_TEMP
 
 #include "OneWire.h"
 #include "DallasTemperature.h"
@@ -20,6 +20,6 @@ extern OneWire ds;  // on digital pin 5
 extern DallasTemperature sensors;
 
 // returns the temperature taken by DS18S20 as float Celsius
-float getTemp();
+float getSoilTemp();
 
 #endif
