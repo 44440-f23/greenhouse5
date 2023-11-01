@@ -1,4 +1,4 @@
-#include "temperature.h"
+#include "soilTemp.h"
 
 OneWire ds(ONE_WIRE_BUS);
 DallasTemperature sensors(&ds);
