@@ -21,5 +21,7 @@ extern uint8_t buff[100];
 uint8_t readReg(uint8_t reg, const void* pBuf, size_t size);
 // returns a float value for the relative humidity
 float getHumidity();
+// returns a float temperature in celsius.
+float getTemp();
 
 #endif

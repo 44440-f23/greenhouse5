@@ -1,4 +1,4 @@
-#include "humidity.h"
+#include "humidityAndTemp.h"
 #include <Arduino.h>
 #include <Wire.h>
 
@@ -8,15 +8,21 @@ uint8_t Data[100] = {0};
 uint8_t buff[100] = {0};
 
 float getHumidity(){
-    readReg(0x00, buff, 4);
-    uint16_t data, data1;
-    float temp;
-    float hum;
-    data = buff[0] << 8 | buff[1];
-    data1 = buff[2] << 8 | buff[3];
-    temp = ((float)data * 165 / 65535.0) - 40.0;
-    hum =  ((float)data1 / 65535.0) * 100;
-    return hum;
+  readReg(0x00, buff, 4);
+  uint16_t data;
+  float hum;
+  data = buff[2] << 8 | buff[3];
+  hum =  ((float)data / 65535.0) * 100;
+  return hum;
+}
+
+float getTemp(){
+  readReg(0x00, buff, 4);
+  uint16_t data;
+  float temp;
+  data = buff[0] << 8 | buff[1];
+  temp = ((float)data * 165 / 65535.0) - 40.0;
+  return temp;
 }
 
 uint8_t readReg(uint8_t reg, const void* pBuf, size_t size){

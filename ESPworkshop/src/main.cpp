@@ -9,9 +9,9 @@ Expansion Device: Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
 #include <ArduinoJson.h>
 #include <Arduino.h>
 #include "moisture.h"
-#include "humidity.h"
+#include "humidityAndTemp.h"
 #include "light.h"
-#include "temperature.h"
+#include "soilTemp.h"
 
 #define BASE_STATION_ID 0
 StaticJsonDocument<200> doc;
@@ -28,9 +28,10 @@ void setup() {
 
 void loop() {    
   doc["soilM"] = getMoisture();
+  doc["soilT"] = getSoilTemp();
   doc["temp"] = getTemp();
   doc["humidity"] = getHumidity();
-  doc["light"] = getLight();
+  doc["lightS"] = getLight();
   serializeJsonPretty(doc, Serial);
   delay(2000);
 }
