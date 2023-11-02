@@ -23,6 +23,7 @@ void setup() {
 
   sensors.begin();
   Wire.begin();
+  setupMesh();
 }
 
 void loop() {    
@@ -36,4 +37,5 @@ void loop() {
 
   mesh.update();
   delay(2000);
+  updateMesh();
 }
