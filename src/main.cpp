@@ -31,9 +31,8 @@ void loop() {
   doc["temp"] = getTemp();
   doc["humidity"] = getHumidity();
   doc["lightS"] = getLight();
-  serializeJsonPretty(doc, Serial);
+  // serializeJsonPretty(doc, Serial); // debug code
   serializeJson(doc, mesh_msg);
 
   mesh.update();
-  delay(2000);
 }
