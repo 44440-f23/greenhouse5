@@ -12,7 +12,7 @@
 
 #define TASK_SECOND 1
 
-void sendMessage(); 
+void setupMesh(); 
 void receivedCallback(uint32_t from, String & msg);
 void newConnectionCallback(uint32_t nodeId);
 void changedConnectionCallback(); 
