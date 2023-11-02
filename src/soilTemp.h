@@ -11,7 +11,7 @@ sensors variable requires sensors.begin() in main setup
 
 #define ONE_WIRE_BUS 0 // DS18B20 Signal pin on digital 5.
 extern OneWire ds;  // on digital pin 5
-extern DallasTemperature sensors;
+extern DallasTemperature sensors; // manages soilTemp device
 
 // returns the temperature taken by DS18B20 as float Celsius
 float getSoilTemp();

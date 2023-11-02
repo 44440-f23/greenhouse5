@@ -14,7 +14,6 @@ Expansion Device: Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
 #include "soilTemp.h"
 #include "mesh.h"
 
-#define BASE_STATION_ID 0
 StaticJsonDocument<200> doc;
 
 void setup() {
@@ -22,7 +21,7 @@ void setup() {
   doc["id"] = 5;
 
   sensors.begin();
-  Wire.begin();
+  Wire.begin(); // required by Humidity and Temp sensor
   setupMesh();
 }
 

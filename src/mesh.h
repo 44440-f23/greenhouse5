@@ -1,17 +1,20 @@
+/*
+Currently under development
+
+Painless mesh header file created by modifying starter code from
+https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/startHere/startHere.ino?ref_type=heads
+*/
 #ifndef _MESH
 #define _MESH
 #include <arduino.h>
 #include <painlessMesh.h>
 
-#define   BLINK_PERIOD    3000 // milliseconds until cycle repeat
-#define   BLINK_DURATION  100  // milliseconds LED is on for
-
 #define   MESH_SSID       "whateverYouLike"
 #define   MESH_PASSWORD   "somethingSneaky"
 #define   MESH_PORT       5555
+#define BASE_STATION_ID 0
 
-#define TASK_SECOND 1
-
+// setup() code for the mesh stored in a function, from starter code
 void setupMesh(); 
 void receivedCallback(uint32_t from, String & msg);
 void newConnectionCallback(uint32_t nodeId);

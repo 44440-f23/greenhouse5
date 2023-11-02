@@ -1,4 +1,6 @@
 /*
+Currently under development
+
 Painless mesh code created by modifying starter code from
 https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/startHere/startHere.ino?ref_type=heads
 */
@@ -10,7 +12,7 @@ Scheduler     userScheduler; // to control your personal task
 painlessMesh  mesh;
 bool calc_delay = false;
 SimpleList<uint32_t> nodes;
-//Task taskSendMessage( TASK_SECOND * 1, TASK_FOREVER, &sendMessage ); // start with a one second interval
+Task taskSendMessage( TASK_SECOND * 1, TASK_FOREVER, &sendMessage ); // start with a one second interval
 String mesh_msg;
 
 void setupMesh(){
@@ -22,13 +24,14 @@ void setupMesh(){
   mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
   mesh.onNodeDelayReceived(&delayReceivedCallback);
 
-//   userScheduler.addTask( taskSendMessage );
-//   taskSendMessage.enable();
+  userScheduler.addTask( taskSendMessage );
+  taskSendMessage.enable();
 }
 
 void sendMessage() {
   //msg += " myFreeMemory: " + String(ESP.getFreeHeap()); // esp 32 memory???
-  mesh.sendSingle(0, mesh_msg);
+  //mesh.sendSingle(BASE_STATION_ID, mesh_msg);
+  mesh.sendBroadcast(mesh_msg);
 
   if (calc_delay) {
     SimpleList<uint32_t>::iterator node = nodes.begin();
@@ -41,7 +44,7 @@ void sendMessage() {
 
   Serial.printf("Sending message: %s\n", mesh_msg.c_str());
   
-  //taskSendMessage.setInterval( random(TASK_SECOND * 1, TASK_SECOND * 5));  // between 1 and 5 seconds
+  taskSendMessage.setInterval( random(TASK_SECOND * 1, TASK_SECOND * 5));  // between 1 and 5 seconds
 }
 
 

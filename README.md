@@ -25,6 +25,14 @@ Sensor Project to update a campus greenhouse alert system. The system is broken 
 - DFROBOT SEN0546: CHT8305 Temperature & Humidity Sensor (used to take soil temperature)
   - https://wiki.dfrobot.com/SKU_SEN0546_I2C_Temperature_and_Humidity_Sensor_Stainless_Steel_Shell
 
+#### Notable Dependencies:
+- painlessMess
+  - starter code https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/startHere/startHere.ino?ref_type=heads
+- ArduinoJson
+  - Documentation w/ examples https://arduinojson.org/v6/doc/ 
+- TemperatureDallas (greatly simplifies getting soilTemp)
+  - Library github and example https://github.com/milesburton/Arduino-Temperature-Control-Library/blob/master/examples/Simple/Simple.ino
+
 ### Development Notes:
 #### How to find analog or digital pin
 Software analog and digital pins were found for expansion board by going to the wiki https://wiki.dfrobot.com/Gravity_Shield_for_FireBeetle_2_SKU_DFR0762#target_4 Then, compare the board represented on the Digital or Analog Ports section to the pin on the esp32 e board, from the esp32 e wiki https://www.dfrobot.com/product-2195.html A digital pin should have Dx beside it. For example: pin 0 is D5.
