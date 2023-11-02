@@ -19,6 +19,7 @@ void changedConnectionCallback();
 void nodeTimeAdjustedCallback(int32_t offset); 
 void delayReceivedCallback(uint32_t from, int32_t delay);
 
+extern painlessMesh  mesh;
 extern String mesh_msg;
 
 // Sends message to base station. Assumes node dest_id is 0
