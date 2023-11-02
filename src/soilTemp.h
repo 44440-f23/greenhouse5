@@ -1,5 +1,5 @@
 /*
-Device: DS18S20 Digital Temperature Sensor
+Device: DS18B20 Digital Temperature Sensor
 Pin used: D5 refer to readme to change pin
 sensors variable requires sensors.begin() in main setup
 */
@@ -9,7 +9,7 @@ sensors variable requires sensors.begin() in main setup
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
-#define ONE_WIRE_BUS 0 // DS18S20 Signal pin on digital 5.
+#define ONE_WIRE_BUS 0 // DS18B20 Signal pin on digital 5.
 extern OneWire ds;  // on digital pin 5
 extern DallasTemperature sensors;
 

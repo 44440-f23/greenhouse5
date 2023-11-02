@@ -20,9 +20,7 @@ void setup() {
   Serial.begin(9600);
   doc["id"] = 5;
 
-  // sensors is owned by temperature.h
   sensors.begin();
-  // Wire is owned by humidity.h
   Wire.begin();
 }
 
