@@ -2,7 +2,7 @@
 Github: https://github.com/44440-f23/greenhouse5  
 Team: Braeden, Luke, Daniel, Kevin
 
-#### Project Description:
+#### Project Description
 Sensor Project to update a campus greenhouse alert system. The system is broken up into 6 greenhouse devices that communicate to a base station with Json (See main.cpp for Json example). This is the code for the greenhouse 5 device. The base station takes readings from the greenhouse devices and based on their readings may send an alert to the manager of the greenhouses.
 
 #### Board and Expansion Devices
@@ -11,7 +11,7 @@ Sensor Project to update a campus greenhouse alert system. The system is broken 
 - Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
   - https://wiki.dfrobot.com/Gravity_Shield_for_FireBeetle_2_SKU_DFR0762
 
-#### Sensor Devices:
+#### Sensor Devices
 - DS18B20 Digital Temperature Sensor
   - Get it working with this tutorial using the DallasTemperature library to simplify code https://randomnerdtutorials.com/guide-for-ds18b20-temperature-sensor-with-arduino/ 
 - DFROBOT SEN0308 Analog Soil Moisture Sensor
@@ -21,7 +21,7 @@ Sensor Project to update a campus greenhouse alert system. The system is broken 
 - DFROBOT SEN0546: CHT8305 Temperature & Humidity Sensor (used to take soil temperature)
   - https://wiki.dfrobot.com/SKU_SEN0546_I2C_Temperature_and_Humidity_Sensor_Stainless_Steel_Shell
 
-#### Notable Dependencies:
+#### Notable Dependencies
 - painlessMess
   - starter code https://gitlab.com/painlessMesh/painlessMesh/-/blob/develop/examples/startHere/startHere.ino?ref_type=heads
 - ArduinoJson
@@ -29,7 +29,7 @@ Sensor Project to update a campus greenhouse alert system. The system is broken 
 - TemperatureDallas (greatly simplifies getting soilTemp)
   - Library github and example https://github.com/milesburton/Arduino-Temperature-Control-Library/blob/master/examples/Simple/Simple.ino
 
-### Development Notes:
+### Development Notes
 #### How to find analog or digital pin
 Software analog and digital pins were found for expansion board by going to the wiki https://wiki.dfrobot.com/Gravity_Shield_for_FireBeetle_2_SKU_DFR0762#target_4 Then, compare the board represented on the Digital or Analog Ports section to the pin on the esp32 e board, from the esp32 e wiki https://www.dfrobot.com/product-2195.html A digital pin should have Dx beside it. For example: pin 0 is D5.
 
