@@ -1,7 +1,6 @@
 ## Project: SensorPlatform4 - GreenHouse5  
 Github: https://github.com/44440-f23/greenhouse5  
-#### Team:
-Braeden, Luke, Daniel, Kevin
+Team: Braeden, Luke, Daniel, Kevin
 
 #### Project Description:
 Sensor Project to update a campus greenhouse alert system. The system is broken up into 6 greenhouse devices that communicate to a base station with Json (See main.cpp for Json example). This is the code for the greenhouse 5 device. The base station takes readings from the greenhouse devices and based on their readings may send an alert to the manager of the greenhouses.
