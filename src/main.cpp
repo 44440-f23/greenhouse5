@@ -12,6 +12,7 @@ Expansion Device: Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
 #include "humidityAndTemp.h"
 #include "light.h"
 #include "soilTemp.h"
+#include "mesh.h"
 
 #define BASE_STATION_ID 0
 StaticJsonDocument<200> doc;
@@ -31,5 +32,8 @@ void loop() {
   doc["humidity"] = getHumidity();
   doc["lightS"] = getLight();
   serializeJsonPretty(doc, Serial);
+  serializeJson(doc, mesh_msg);
+
+  mesh.update();
   delay(2000);
 }
