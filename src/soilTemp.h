@@ -13,7 +13,7 @@ sensors variable requires sensors.begin() in main setup
 extern OneWire ds;  // on digital pin 5
 extern DallasTemperature sensors;
 
-// returns the temperature taken by DS18S20 as float Celsius
+// returns the temperature taken by DS18B20 as float Celsius
 float getSoilTemp();
 
 #endif
