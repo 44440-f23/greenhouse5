@@ -14,25 +14,37 @@ Expansion Device: Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
 #include "soilTemp.h"
 #include "mesh.h"
 
+#define SENSOR_READ_INTERVAL 2000 // 2 seconds
+
 StaticJsonDocument<200> doc;
+unsigned long last_check = 0;
 
 void setup() {
   Serial.begin(9600);
   doc["id"] = 5;
+  doc["soilM"] = "blank";
+  doc["soilT"] = 0.0;
+  doc["temp"] = 0.0;
+  doc["humidity"] = 0.0;
+  doc["lightS"] = 0;
+  last_check = millis();
 
   sensors.begin();
   Wire.begin(); // required by Humidity and Temp sensor
   setupMesh();
 }
 
-void loop() {    
-  doc["soilM"] = getMoisture();
-  doc["soilT"] = getSoilTemp();
-  doc["temp"] = getTemp();
-  doc["humidity"] = getHumidity();
-  doc["lightS"] = getLight();
-  // serializeJsonPretty(doc, Serial); // debug code
-  serializeJson(doc, mesh_msg);
-
+void loop() {
+  if(millis() - last_check > SENSOR_READ_INTERVAL){
+    last_check = millis();
+    doc["soilM"] = getMoisture();
+    doc["soilT"] = getSoilTemp();
+    doc["temp"] = getTemp();
+    doc["humidity"] = getHumidity();
+    doc["lightS"] = getLight();
+    // serializeJsonPretty(doc, Serial); // debug code
+    serializeJson(doc, mesh_msg);
+  }
+  
   mesh.update();
 }
