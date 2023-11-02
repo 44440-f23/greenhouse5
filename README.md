@@ -1,21 +1,18 @@
-## Project: SensorPlatform4 - GreenHouse5
-#### Github: https://github.com/44440-f23/greenhouse5
+## Project: SensorPlatform4 - GreenHouse5  
+Github: https://github.com/44440-f23/greenhouse5  
 #### Team:
-- Braeden
-- Luke
-- Daniel
-- Kevin
+Braeden, Luke, Daniel, Kevin
 
 #### Project Description:
 Sensor Project to update a campus greenhouse alert system. The system is broken up into 6 greenhouse devices that communicate to a base station with Json (See main.cpp for Json example). This is the code for the greenhouse 5 device. The base station takes readings from the greenhouse devices and based on their readings may send an alert to the manager of the greenhouses.
 
-#### Board and Expansion
+#### Board and Expansion Devices
 - Firebeetle 2 esp32 e
   - https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654
 - Gravity: IO Shield for FireBeetle 2 (ESP32-E/M0)
   - https://wiki.dfrobot.com/Gravity_Shield_for_FireBeetle_2_SKU_DFR0762
 
-#### Sensors:
+#### Sensor Devices:
 - DS18B20 Digital Temperature Sensor
   - Get it working with this tutorial using the DallasTemperature library to simplify code https://randomnerdtutorials.com/guide-for-ds18b20-temperature-sensor-with-arduino/ 
 - DFROBOT SEN0308 Analog Soil Moisture Sensor
