@@ -22,12 +22,7 @@ unsigned long last_check = 0;
 void setup() {
   Serial.begin(9600);
   doc["id"] = 5;
-  doc["soilM"] = "blank";
-  doc["soilT"] = 0.0;
-  doc["temp"] = 0.0;
-  doc["humidity"] = 0.0;
-  doc["lightS"] = 0;
-  last_check = millis();
+  last_check = 0;
 
   sensors.begin();
   Wire.begin(); // required by Humidity and Temp sensor
