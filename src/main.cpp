@@ -37,5 +37,4 @@ void loop() {
 
   mesh.update();
   delay(2000);
-  updateMesh();
 }
