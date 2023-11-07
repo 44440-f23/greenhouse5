@@ -12,48 +12,53 @@ Scheduler     userScheduler; // to control your personal task
 painlessMesh  mesh;
 bool calc_delay = false;
 SimpleList<uint32_t> nodes;
-Task taskSendMessage( TASK_SECOND * 1, TASK_FOREVER, &sendMessage ); // start with a one second interval
+Task taskSendMessage( TASK_SECOND * SEND_INTERVAL, TASK_FOREVER, &sendMessage ); // start with a one second interval
 String mesh_msg;
+int baseStationID = -1;
+const size_t bufferSize = 1024; 
 
 void setupMesh(){
   mesh.setDebugMsgTypes(ERROR | DEBUG);  // set before init() so that you can see error messages
   mesh.init(MESH_SSID, MESH_PASSWORD, &userScheduler, MESH_PORT);
   mesh.onReceive(&receivedCallback);
-  mesh.onNewConnection(&newConnectionCallback);
-  mesh.onChangedConnections(&changedConnectionCallback);
-  mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
-  mesh.onNodeDelayReceived(&delayReceivedCallback);
+  //mesh.onNewConnection(&newConnectionCallback);
+  //mesh.onChangedConnections(&changedConnectionCallback);
+  //mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
+  //mesh.onNodeDelayReceived(&delayReceivedCallback);
 
   userScheduler.addTask( taskSendMessage );
   taskSendMessage.enable();
 }
 
 void sendMessage() {
-  //msg += " myFreeMemory: " + String(ESP.getFreeHeap()); // esp 32 memory???
-  //mesh.sendSingle(BASE_STATION_ID, mesh_msg);
-  mesh.sendBroadcast(mesh_msg);
-
-  if (calc_delay) {
-    SimpleList<uint32_t>::iterator node = nodes.begin();
-    while (node != nodes.end()) {
-      mesh.startDelayMeas(*node);
-      node++;
-    }
-    calc_delay = false;
+ if(baseStationID == -1)
+  {
+    Serial.println("BS has no id");
   }
-
-  Serial.printf("Sending message: %s\n", mesh_msg.c_str());
-  
-  taskSendMessage.setInterval(TASK_SECOND * 5);  // 5 seconds
+  else
+  {
+    mesh.sendSingle(baseStationID, mesh_msg);
+    Serial.printf("Sending message: %s\n", mesh_msg.c_str());
+  }  
+  //taskSendMessage.setinterval(TASK_SECOND * 5);  // 5 seconds
+  mesh_msg = "";
 }
 
 
 void receivedCallback(uint32_t from, String & msg) {
-  Serial.printf("startHere: Received from %u msg=%s\n", from, msg.c_str());
-  if(from = 0){
-    sendMessage();
+
+  Serial.printf("Received: from %u msg=%s\n", from, msg.c_str());
+  try
+  {
+    baseStationID = parseSimpleJson(msg.c_str());
+  }
+  catch(const std::exception& e)
+  {
+    Serial.printf("ERROR in json parse");
   }
 }
+
+/*
 
 void newConnectionCallback(uint32_t nodeId) {
   Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
@@ -83,3 +88,26 @@ void nodeTimeAdjustedCallback(int32_t offset) {
 void delayReceivedCallback(uint32_t from, int32_t delay) {
   Serial.printf("Delay to node %u is %d us\n", from, delay);
 }
+
+*/
+
+uint32_t parseSimpleJson(const char* jsonString)
+{
+//create the parsable json object
+StaticJsonDocument<bufferSize> jsonDoc;
+DeserializationError error = deserializeJson(jsonDoc, jsonString);
+
+
+// catch the errors if there are any
+if (error) {
+Serial.print("Failed to parse JSON: ");
+Serial.println(error.c_str());
+return 10;
+}
+
+
+uint32_t baseID = jsonDoc["basestation"];
+return baseID;
+
+}
+
