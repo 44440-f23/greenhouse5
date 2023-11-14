@@ -21,10 +21,6 @@ void setupMesh(){
   mesh.setDebugMsgTypes(ERROR | DEBUG);  // set before init() so that you can see error messages
   mesh.init(MESH_SSID, MESH_PASSWORD, &userScheduler, MESH_PORT);
   mesh.onReceive(&receivedCallback);
-  //mesh.onNewConnection(&newConnectionCallback);
-  //mesh.onChangedConnections(&changedConnectionCallback);
-  //mesh.onNodeTimeAdjusted(&nodeTimeAdjustedCallback);
-  //mesh.onNodeDelayReceived(&delayReceivedCallback);
 
   userScheduler.addTask( taskSendMessage );
   taskSendMessage.enable();
@@ -57,39 +53,6 @@ void receivedCallback(uint32_t from, String & msg) {
     Serial.printf("ERROR in json parse");
   }
 }
-
-/*
-
-void newConnectionCallback(uint32_t nodeId) {
-  Serial.printf("--> startHere: New Connection, nodeId = %u\n", nodeId);
-  Serial.printf("--> startHere: New Connection, %s\n", mesh.subConnectionJson(true).c_str());
-}
-
-void changedConnectionCallback() {
-  Serial.printf("Changed connections\n");
-  nodes = mesh.getNodeList();
-
-  Serial.printf("Num nodes: %d\n", nodes.size());
-  Serial.printf("Connection list:");
-
-  SimpleList<uint32_t>::iterator node = nodes.begin();
-  while (node != nodes.end()) {
-    Serial.printf(" %u", *node);
-    node++;
-  }
-  Serial.println();
-  calc_delay = true;
-}
-
-void nodeTimeAdjustedCallback(int32_t offset) {
-  Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(), offset);
-}
-
-void delayReceivedCallback(uint32_t from, int32_t delay) {
-  Serial.printf("Delay to node %u is %d us\n", from, delay);
-}
-
-*/
 
 uint32_t parseSimpleJson(const char* jsonString)
 {

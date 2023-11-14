@@ -30,14 +30,13 @@ void setup() {
 }
 
 void loop() {
-  if(millis() - last_check > SEND_INTERVAL*1000){ // Matchest send message from mesh, may need to reduce.
+  if(millis() - last_check > (SEND_INTERVAL - 1)*1000){ // Matchest send message from mesh, may need to reduce.
     last_check = millis();
     //doc["soilM"] = getMoisture();
     //doc["soilT"] = getSoilTemp();
     doc["temp"] = getTemp();
     doc["humidity"] = getHumidity();
     doc["lightS"] = getLight();
-    // serializeJsonPretty(doc, Serial); // debug code
     serializeJson(doc, mesh_msg);
   }
   
